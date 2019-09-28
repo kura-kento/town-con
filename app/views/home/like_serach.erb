@@ -1,0 +1,25 @@
+<%= link_to("新しく追加","/like_add") %>
+
+<%= form_tag("/like_serach",:method => 'get') do %>
+    <input type="text" name="serach" value="">
+    <input type="submit" name="" value="検索">
+<% end %>
+
+<div class="HomeLikes-LikesBlock">
+  <% @like_serach.each do |like| %>
+      <div class="HomeLikes-LikesBlock__items">
+          <a class = "HomeLikes-LikesBlock__items--image" href="<%="/like/#{like.id}"%>"></a>
+
+          <a  ><img src="<%= "/like_images/#{like.image}"%>" class = "like-image"></a>
+
+          <div class="HomeLikes-LikesBlock__title">
+              <a style="word-break: break-all;"><%= "#{like.title}" %></a>
+          </div>
+
+          <div class="HomeLikes-LikesBlock__peple">
+              <%= "(#{like.peple}人)" %>
+            </div>
+      </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,99 @@
+<h1>参加者確認</h1>
+
+    <p class = "band">日程一覧</p>
+
+        <% @events.each do |event| %>
+            <%= form_tag("/participant/#{event.date}",:method => 'get') do %>
+                <input type="text" name="date" value="<%= event.date %>">
+                <input type="submit" name="" value="確認">
+            <%end%>
+        <% end %>
+
+    <p class = "band">開催日</p>
+
+        <%= @date %>
+        <%= form_tag("/matching/#{@date}") do %>
+            <input type="integer" name="time" value="">
+            <input type="submit" name="" value="マッチング">
+        <%end%>
+
+    <p class = "band">参加女性人数</p>
+
+          <%= @participants_woman.size %>
+          <%= form_tag("/grest_add/#{@date}/woman") do %>
+            <input type="submit" name="" value="ゲスト追加">
+          <% end %>
+
+    <p class = "band">参加男性人数</p>
+
+        <%= @participants_man.size %>
+        <%= form_tag("/grest_add/#{@date}/man") do %>
+            <input type="submit" name="" value="ゲスト追加">
+        <% end %>
+
+    <p class = "band">参加者一覧</p>
+
+    <!--  修正予定 リファクタリング-->
+    <div class="MasterParticipant-ParticipantList">
+        <div class="MasterParticipant-ParticipantList__woman-box">
+            <% @participants.each do |participant| %>
+                <%  if  participant.gender == "女性" %>
+                        <div class="woman-color">
+                            <%= link_to("#{participant.user_id}","/profile/#{participant.user_id}") %>
+                        </div>
+                <% end %>
+            <% end %>
+        </div>
+
+        <div class="MasterParticipant-ParticipantList__man-box">
+            <% @participants.each do |participant| %>
+                <% if  participant.gender == "男性" %>
+                    <div class="man-color">
+                        <%= link_to("#{participant.user_id}","/profile/#{participant.user_id}") %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+
+<% unless  Pair.find_by(date: @date) == nil %>
+
+    <% Pair.where(date: @date).each_with_index  do |pair,time| %>
+        <div class="MasterParticipant-MatchingList">
+
+            <p class = "band band--center"><%="#{time+1}組目"%></p>
+
+            <% men_id = pair.men.split(",").map(&:to_i)%>
+            <% women_id = pair.women.split(",").map(&:to_i)%>
+
+            <% men_id.size.times do |i| %>
+                <div class="">
+                  <div class="man_color_cover">
+                      <div class="man-color">
+                          <%= User.find(men_id[i]).id %>
+                      </div>
+                  </div>
+
+                  <div class="woman_color_cover">
+                      <div class="woman-color">
+                          <%= User.find(women_id[i]).id %>
+                      </div>
+                  </div>
+
+                    <%  man_profile = User.find(men_id[i]).like.split(",") %>
+                    <% woman_profile = User.find(women_id[i]).like.split(",") %>
+                    <div class="valuation">
+                        <%= (man_profile & woman_profile).size %>
+                    </div>
+                </div>
+
+            <% end %>
+        </div>
+    <% end %>
+
+    <%= form_tag("/matched_destroy/#{@date}") do %>
+        <input type="submit" name="" value="削除">
+    <%end%>
+
+<% end %>

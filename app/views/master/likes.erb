@@ -1,0 +1,33 @@
+<div class="HomeLikes-Like_add">
+    <%= link_to("新しく追加","/like_add",{class:"MasterLikes-Like_add__Link"}) %>
+</div>
+<br>
+<br>
+<%= form_tag("/master/likes_permission") do %>
+    <input type="submit" name="" value="一括許可">
+<% end %>
+
+<div class="MasterLikes-block">
+    <% @likes.each do |like| %>
+        <% next if like.permission == true %>
+
+        <div class="MasterLikes-LikesBlock__items">
+            <%= form_tag("/master/likes_destroy/#{like.id}") do %>
+                <div class="btn--box">
+                    <input type="submit" name="" value="×" class="btn btn--cross">
+                </div>
+            <% end %>
+
+            <img src="<%= "/like_images/#{like.image}"%>" class = "like-image">
+
+            <div class="MasterLikes-LikesBlock__title">
+                <a style="word-break: break-all;"><%= like.title%></a>
+            </div>
+
+            <div class="MasterLikes-block__peple">
+                <%= "(#{like.peple}人)" %>
+            </div>
+        </div>
+
+    <% end %>
+</div>

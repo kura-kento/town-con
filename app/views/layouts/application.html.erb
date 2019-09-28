@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TownConApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <style media="screen">
+      a{text-decoration:none;}
+      a:hover{text-decoration:none;}
+    </style>
+
+    <header>
+      <!-- /ログアウト中に出てくるヘッダー`` -->
+
+      <% if session[:user_id] == nil %>
+          <div class="header-logo">
+              <%= link_to("新規登録","/signup") %>
+          </div>
+
+          <div class="header-logo">
+              <%= link_to("ログイン","/login") %>
+          </div>
+
+      <!-- /ログイン中に出てくるヘッダー` -->
+      <% else %>
+          <div class="header-logo">
+              <%= link_to("ログアウト","/logout") %>
+          </div>
+
+          <div class="header-logo">
+              <%= link_to("プロフィール","/profile/#{session[:user_id]}") %>
+          </div>
+
+          <div class="header-logo">
+            <%= link_to("好きなもの","/likes") %>
+          </div>
+
+          <div class="header-logo">
+            <%= link_to("参加フォーム","/join_form") %>
+          </div>
+
+          <div class="header-logo">
+            <%= link_to("トップ","/") %>
+          </div>
+
+      <% end %>
+      <% if session[:user_id] == 1  %>
+          <div class="master-class">
+              <div class="header-logo">
+                  <%= link_to("参加者","/participant") %>
+              </div>
+
+              <div class="header-logo">
+                  <%= link_to("好きなもの（管理用）","/master/likes") %>
+              </div>
+
+              <div class="header-logo">
+                  <%= link_to("管理用トップ","/master") %>
+              </div>
+          </div>
+      <% end %>
+
+
+    </header>
+    <% if flash[:notice] %>
+        <div class="flash">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

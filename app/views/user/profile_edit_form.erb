@@ -1,0 +1,18 @@
+<% @current_user.errors.full_messages.each do |message| %>
+   <div class="error_message">
+        <%= message %>
+   </div>
+<% end %>
+
+<%= form_tag("/profile_edit") do %>
+    <p class = "band">ニックネーム</p>
+        <input type="string" name="name" value="<%= @current_user.name %>">
+
+    <p class = "band">メールアドレス</p>
+        <input type="string" name="email" value="<%= @current_user.email %>">
+
+    <p class = "band">パスワード</p>
+        <input type="string" name="password" value="<%= @current_user.password %>">
+
+        <input type="submit" name="" value="更新">
+<% end %>

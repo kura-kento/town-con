@@ -1,0 +1,17 @@
+
+<p class = "band">イベントスケジュール</p>
+
+<div class="HomeTop-ScheduleList">
+    <% @events.each do |event| %>
+        <div class="HomeTop-ScheduleList__items">
+            <%= event.date%>
+            <% [:deadline_men,:deadline_women].each_with_index do |gender,i| %>
+                <% if event[gender] == true && @joins.where(gender: i == 0 ? "男性" : "女性" ,date: event.date).size < event.capacity %>
+                    <p ><%= i == 0 ? "男性:" : "女性:"%><a class="text--blue">参加できます</a></p>
+                <% else %>
+                    <p ><%= i == 0 ? "男性:" : "女性:"%><a class="text--red">参加できません</a></p>
+                <%end%>
+            <% end %>
+        </div>
+    <%end%>
+</div>

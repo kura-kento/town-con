@@ -1,0 +1,15 @@
+<h1>新しく追加</h1>
+
+    <div class="error_message">
+        <%= @error_message if @error_message %>
+    </div>
+
+
+    <%= form_tag("/like_add",{multipart: true}) do %>
+        <p class="band">タイトル</p>
+            <input type="text" name="title" value="<%= "#{@title}"%>">
+
+        <p class="band">画像</p>
+            <input type="file" name="image" >
+            <input type="submit" name="" value="追加">
+    <% end %>

@@ -1,0 +1,19 @@
+<h1>参加者確認</h1>
+
+    <p class = "band">日程一覧</p>
+
+        <% @events.each do |event| %>
+            <%= form_tag("/participant/#{event.date}",:method => 'get') do %>
+                <input type="string" name="date" value="<%= event.date %>">
+                <input type="submit" name="" value="確認">
+            <%end%>
+        <% end %>
+
+    <p class = "band">過去イベント</p>
+
+        <% @events_old.each do |event| %>
+            <%= form_tag("/participant/#{event.date}",:method => 'get') do %>
+                <input type="string" name="date" value="<%= event.date %>">
+                <input type="submit" name="" value="確認">
+            <%end%>
+        <% end %>

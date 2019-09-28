@@ -1,0 +1,9 @@
+<% if  @current_user.like.split(",").count("#{@like.id}") == 0 %>
+    <%= form_tag("/like_profile_add/#{@like.id}") do %>
+        <input type="submit" name="" value="追加">
+    <% end %>
+<% else %>
+    <%= form_tag("/like_profile_destroy/#{@like.id}") do %>
+        <input type="submit" name="" value="外す">
+    <% end %>
+<% end %>

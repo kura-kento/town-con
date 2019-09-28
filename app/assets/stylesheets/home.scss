@@ -1,0 +1,73 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-main{
+  height:800px;
+  background-image: url(02.jpg);
+  background-size: cover;
+}
+
+.HomeLikes-LikeSerach{
+  margin-top:40px;
+  width:200px;
+}
+
+.HomeTop-ScheduleList{
+  overflow: hidden;
+
+  &__items{
+    float:left;
+    width:170px;
+    border:1px solid black;
+    padding:5px;
+    margin-left:5px;
+  }
+}
+
+.HomeLikes-Like_add{
+  padding:10px;
+    &__Link{
+      color:rgb(65, 63, 74);
+      float:left;
+      padding:5px;
+      background-color:#c0c0c0;
+      box-shadow:2px 3px #696969;
+
+      &:active{
+        box-shadow:none;
+        position:relative;
+        top:3px;
+        left:2px;
+      }
+    }
+}
+
+.HomeLikes-LikesBlock{
+  width:100%;
+  overflow: hidden;
+
+  margin-top:20px;
+
+  &__items{
+      background-color: rgb(180, 180, 180);
+      position:relative;
+      float:left;
+      width:120px;
+      margin:10px 5px 0px 5px;
+
+      &--image{
+        position:absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      &:hover{
+        background-color: rgb(200, 200, 200);
+      }
+  }
+
+  &__title a{
+    color:black;
+  }
+}

@@ -1,0 +1,23 @@
+<h1>参加フォーム</h1>
+
+
+<p class = "band">日程一覧</p>
+
+    <% @events.each do |event| %>
+        <!-- 参加している場合は、人数に関係なくキャンセルができる -->
+        <% if @joins.find_by(user_id: session[:user_id],date: event.date) != nil %>
+            <%= form_tag("/cancel") do %>
+                <input type="date" name="date" value="<%= event.date %>">
+                <input type="submit" name="" value="キャンセル">
+            <% end %>
+        <!-- 規定数より少ない場合は参加できる -->
+        <% elsif event[@current_user.gender == "男性" ? :deadline_men : :deadline_women] == true && %>
+        <% @joins.where(gender: @current_user.gender ,date: event.date).size < event.capacity %>
+            <%= form_tag("/join") do %>
+                <input type="date" name="date" value="<%= event.date %>">
+                <input type="submit" name="" value="参加">
+            <%end%>
+        <% else %>
+            <p>満員御礼（<%= event.date %>）</p>
+        <% end %>
+    <% end %>

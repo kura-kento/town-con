@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      event: イベント
+    attributes:
+      user:
+        name: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        age: 年齢

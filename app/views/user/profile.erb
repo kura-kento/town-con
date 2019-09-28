@@ -1,0 +1,50 @@
+
+<p class = "band">名前</p>
+    <%= @user.name %>
+
+<p class = "band">性別</p>
+    <%= @user.gender %>
+
+<p class = "band">好きな物</p>
+    <div class="UserProfile-LikesBlock">
+      <% @user_profiles.each do |profile| %>
+
+          <div class="UserProfile-LikesBlock__items">
+              <a class = "HomeLikes-LikesBlock__items--image" href="<%= "/like/#{profile.id}"%>"></a>
+
+              <a ><img src="<%= "/like_images/#{profile.image}"%>" class = "like-image"></a>
+
+              <div class="UserProfile-LikesBlock__title">
+                  <a style="word-break: break-all;"><%= "#{profile.title}" %></a>
+              </div>
+
+              <div class="UserProfile-LikesBlock__peple">
+                  <%= "(#{profile.peple}人)" %>
+              </div>
+
+          </div>
+
+      <% end %>
+    </div>
+<div class="">
+    <% if @profile_id.to_i == session[:user_id] %>
+
+        <p class = "band">メールアドレス</p>
+            <%= @user.email %>
+
+        <p class = "band">パスワード</p>
+            <%= @user.password %>
+        <!-- <p class = "band">マッチング相手</p> -->
+        <%= form_tag("/profile_edit/#{@user.id}" , :method => 'get' ) do %>
+            <input type="submit" name="" value="編集">
+        <% end %>
+
+    <% end %>
+
+    <% if session[:user_id] == 1 && @profile_id.to_i >= 10001 %>
+        <%= form_tag("/user/destroy/#{@profile_id}") do %>
+            <input type="submit" name="" value="削除">
+        <% end %>
+
+    <% end %>
+</div>

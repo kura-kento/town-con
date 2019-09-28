@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  peple: 1
+  image: MyString
+  creater_id: 1
+  permission: false
+
+two:
+  title: MyString
+  peple: 1
+  image: MyString
+  creater_id: 1
+  permission: false

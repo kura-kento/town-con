@@ -1,0 +1,68 @@
+// Place all the styles related to the master controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.MasterTop-ScheduleList{
+  overflow: hidden;
+
+  &__items{
+    float:left;
+    width:170px;
+    border:1px solid black;
+    padding:5px;
+    margin-left:5px;
+  }
+}
+
+.MasterParticipant-ParticipantList{
+  width:190px;
+  overflow: hidden;
+  background-color: white;
+  &__man-box{
+    width:80px;
+    float:right;
+  }
+  &__woman-box{
+    width:80px;
+    
+    float:left;
+  }
+}
+
+.MasterParticipant-MatchingList{
+  float:left;
+  padding:0 10px 10px 0;
+}
+
+.MasterLikes-Like_add{
+  padding:10px;
+    &__Link{
+      color:rgb(65, 63, 74);
+      float:left;
+      padding:5px;
+      background-color:#c0c0c0;
+      box-shadow:2px 3px #696969;
+
+      &:active{
+        box-shadow:none;
+        position:relative;
+        top:3px;
+        left:2px;
+      }
+    }
+}
+
+.MasterLikes-LikesBlock{
+  overflow: hidden;
+
+  &__items{
+      background-color: rgb(180, 180, 180);
+      float:left;
+      width:120px;
+      margin:20px 10px 30px 0;
+  }
+
+  &__title{
+      width:120px;
+  }
+}
